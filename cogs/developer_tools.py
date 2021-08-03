@@ -7,7 +7,7 @@ import datetime
 import ast
 import subprocess
 
-class Developer_Tools(commands.Cog):
+class developer_tools(commands.Cog):
     """Hidden "Developers" Module for Lithia"""
     def __init__(self, client):
         self.client = client
@@ -103,4 +103,4 @@ class Developer_Tools(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(Developers_Tools(client))
+    client.add_cog(developers_tools(client))
