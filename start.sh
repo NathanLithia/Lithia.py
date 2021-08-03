@@ -1,0 +1,1 @@
+python3.8 -u main.py
