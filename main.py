@@ -20,7 +20,9 @@ async def on_ready():
     if not hasattr(client, 'appinfo'):
         client.appinfo = await client.application_info()
     for error in boot_errors:
-        await client.get_user(client.appinfo.owner.id).send(str(error))
+        try:
+            await client.fetch_user(client.appinfo.owner.id).send(error)
+        except: print(f'Could relay error over discord.\n{error}')
     print(f'Logged in as: {client.user.name} - {client.user.id}\nVersion: {discord.__version__}')
 
 
