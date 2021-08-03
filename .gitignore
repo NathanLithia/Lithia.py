@@ -1,3 +1,5 @@
 # Ignore
 *.cog
+*.log
+*.pyc
 # Allow
