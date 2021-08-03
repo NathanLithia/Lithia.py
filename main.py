@@ -21,7 +21,7 @@ async def on_ready():
         client.appinfo = await client.application_info()
     for error in boot_errors:
         await client.get_user(client.appinfo.owner.id).send(str(error))
-    print(f'\n\nLogged in as: {client.user.name} - {client.user.id}\nVersion: {discord.__version__}\n')
+    print(f'Logged in as: {client.user.name} - {client.user.id}\nVersion: {discord.__version__}')
 
 
 if __name__ == '__main__':
