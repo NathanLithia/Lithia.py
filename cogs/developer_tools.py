@@ -103,4 +103,4 @@ class developer_tools(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(developers_tools(client))
+    client.add_cog(developer_tools(client))
