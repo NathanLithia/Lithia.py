@@ -85,9 +85,9 @@ class developer_tools(commands.Cog):
 
     @commands.command(hidden=True)
     @commands.is_owner()
-    async def im2m(self, ctx, message):
+    async def m2f(self, ctx, message):
         try:
-            await ctx.reply(file=File(fp=io.StringIO(message), filename="user_info.txt"))
+            await ctx.reply(file=File(fp=io.StringIO(message), filename="message.txt"))
         except Exception as e:
             await ctx.reply(f'`🔴{type(e).__name__}` - {e}')
 
