@@ -10,7 +10,7 @@ class cog_manager(commands.Cog):
 
     @commands.command(name='unload', hidden=True)
     @commands.is_owner()
-    async def CogUnload(self, ctx, *, cog: str):
+    async def unload_cog(self, ctx, *, cog: str):
         """Command which Unloads Modules."""
         if str(cog).startswith('cogs.') == False:
             cog = f'cogs.{cog}'
@@ -23,7 +23,7 @@ class cog_manager(commands.Cog):
 
     @commands.command(hidden=True, aliases=['reload', 'load'])
     @commands.is_owner()
-    async def CogLoad(self, ctx, *, cog: str = None):
+    async def load_cog(self, ctx, *, cog: str = None):
         """Command which Loads and Reloads Modules."""
         if cog == None: 
             if self.lastcog == None: return await ctx.send(f'``🔴GenericError`` - Last known Cog is ``None``')
@@ -48,14 +48,14 @@ class cog_manager(commands.Cog):
 
     @commands.command(hidden=True, aliases=['enable', 'Enable'])
     @commands.is_owner()
-    async def CogEnable(self, ctx, *, cog: str = None):
+    async def enable_cog(self, ctx, *, cog: str = None):
         """Enables a Disabled Cog."""
         pass
 
 
     @commands.command(hidden=True, aliases=['disable', 'Disable'])
     @commands.is_owner()
-    async def CogDisable(self, ctx, *, cog: str = None):
+    async def disable_cog(self, ctx, *, cog: str = None):
         """Disables a Enabled Cog."""
         pass
 
