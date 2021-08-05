@@ -53,35 +53,17 @@ class developer_tools(commands.Cog):
             await ctx.reply(result)
 
 
-    @commands.command(hidden=True)
-    @commands.is_owner()
-    async def cmdOLD(self, ctx, *, inputs):
-        """OLD Terminal Access Tool"""
-        result = subprocess.check_output(inputs.split())
-        await ctx.reply(f'``{inputs.split()}``')
-        trace = result.decode('utf-8')
-        for chunk in [trace[i:i+1500] for i in range(0, len(trace), 1500)]: await ctx.reply(f"```{chunk}```")
-
-
     @commands.command(hidden=True, aliases=['CMD', 'term', 'terminal'])
     @commands.is_owner()
-    async def cmd(self, ctx, *, inputs):
+    async def terminal(self, ctx, *, inputs):
         """Terminal Access Tool"""
         try:
             result = subprocess.check_output(inputs.split())
         except Exception as e:
             await ctx.reply(f'`🔴{type(e).__name__}` - {e}')
             return
-        trace = result.decode('utf-8')
-        self.Terminal_Embed=discord.Embed(color=0xc0c0c0)
-        self.Terminal_Embed.set_footer(text=f"{inputs.split()}")
-        fields = 0
-        while fields <= 25:
-            for chunk in [trace[i:i+2048] for i in range(0, len(trace), 2048)]:
-                self.Terminal_Embed.add_field(name=f'Terminal Field: ``{fields}``', value=f'```{chunk}```')
-                fields += 1
-            break
-        await ctx.reply(embed=self.Terminal_Embed)
+        await ctx.reply(file=File(fp=io.StringIO(result.decode('utf-8')), filename="terminal_output.log"))
+
 
     @commands.command(hidden=True)
     @commands.is_owner()
