@@ -53,7 +53,7 @@ class developer_tools(commands.Cog):
             await ctx.reply(result)
 
 
-    @commands.command(hidden=True, aliases=['CMD', 'term', 'terminal'])
+    @commands.command(hidden=True, aliases=['CMD', 'term', 'cmd'])
     @commands.is_owner()
     async def terminal(self, ctx, *, inputs):
         """Terminal Access Tool"""
