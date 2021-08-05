@@ -8,7 +8,7 @@ import ast
 import subprocess
 
 class developer_tools(commands.Cog):
-    """Hidden "Developers" Module for Lithia"""
+    """Client Developers Module"""
     def __init__(self, client):
         self.client = client
 

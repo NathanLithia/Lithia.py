@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 
 class cog_manager(commands.Cog):
-    """Hidden Module management Commands for Lithia"""
+    """Client Module Management"""
     def __init__(self, client):
         self.client = client
         self.lastcog = None
