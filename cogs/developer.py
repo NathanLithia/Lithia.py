@@ -7,7 +7,7 @@ import datetime
 import ast
 import subprocess
 
-class developer_tools(commands.Cog):
+class developer(commands.Cog):
     """Client Developers Module"""
     def __init__(self, client):
         self.client = client
@@ -53,10 +53,10 @@ class developer_tools(commands.Cog):
             await ctx.reply(result)
 
 
-    @commands.command(hidden=True, aliases=['CMD', 'term', 'cmd'])
+    @commands.command(hidden=True, aliases=['CMD', 'term', 'cmd', "terminal"])
     @commands.is_owner()
-    async def terminal(self, ctx, *, inputs):
-        """Terminal Access Tool"""
+    async def dterm(self, ctx, *, inputs):
+        """Discord Terminal Access Tool"""
         try:
             result = subprocess.check_output(inputs.split())
         except Exception as e:
@@ -73,6 +73,7 @@ class developer_tools(commands.Cog):
         except Exception as e:
             await ctx.reply(f'`🔴{type(e).__name__}` - {e}')
 
+
     @commands.command(hidden=True)
     @commands.is_owner()
     async def probe(self, ctx, path):
@@ -85,4 +86,4 @@ class developer_tools(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(developer_tools(client))
+    client.add_cog(developer(client))
