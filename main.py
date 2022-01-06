@@ -45,6 +45,5 @@ if __name__ == '__main__':
     for extension in initial_extensions:
         try: client.load_extension(extension)
         except Exception as e: boot_errors.append(f'`🔴{type(e).__name__}` - {e}')
-    with open ("./tokenpath.var", "r") as tokenpath:
-        with open (tokenpath.readlines()[0], "r") as token:
-            client.run(token.readlines()[0])
+    with open ("./auth.token", "r") as Token:
+        client.run(Token.readlines()[0])
