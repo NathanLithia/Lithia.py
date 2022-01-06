@@ -4,7 +4,7 @@ import discord
 import datetime
 import os
 
-class dmlogger(commands.Cog):
+class dmlog(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.log_direct_messages = True
@@ -36,4 +36,4 @@ class dmlogger(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(dmlogger(client))
+    client.add_cog(dmlog(client))
