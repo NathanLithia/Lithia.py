@@ -19,10 +19,10 @@ class dmlog(commands.Cog):
 
 
     def log_direct_message(self, message):
-        self.quickwrite(f"./cogs/dmlogger/dm/{message.author.id}.log", f"\n[{datetime.datetime.utcnow()}][{message.author.name}]: {message.content}.")
+        self.quickwrite(f"./cogs/dmlog/dm/{message.author.id}.log", f"\n[{datetime.datetime.utcnow()}][{message.author.name}]: {message.content}.")
 
     def log_guild_message(self, message):
-        self.quickwrite(f"./cogs/dmlogger/guild/{message.author.guild.id}/{message.channel.id}.log", f"\n[{datetime.datetime.utcnow()}][{message.author.name}]: {message.content}.")
+        self.quickwrite(f"./cogs/dmlog/guild/{message.author.guild.id}/{message.channel.id}.log", f"\n[{datetime.datetime.utcnow()}][{message.author.name}]: {message.content}.")
 
 
     @commands.Cog.listener()
