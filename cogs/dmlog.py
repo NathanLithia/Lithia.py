@@ -27,13 +27,12 @@ class dmlogger(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author.bot == False:
-            if self.log_direct_messages == True:
-                if message.guild == None:
-                    self.log_direct_message(message)
-            if self.log_guild_messages == True:
-                if message.guild != None:
-                    self.log_guild_message(message)
+        if self.log_direct_messages == True:
+            if message.guild == None:
+                self.log_direct_message(message)
+        if self.log_guild_messages == True:
+            if message.guild != None:
+                self.log_guild_message(message)
 
 
 def setup(client):
