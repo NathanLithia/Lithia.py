@@ -167,16 +167,23 @@ class Planetside(commands.Cog):
         """
         Checks the status of the Planetside2 Servers.
         """
-        server = ctx.message.content.split()[0][1:].lower()
-        if server in self.servers:
-            try:
-                MSG = await ctx.reply(f'<{self.donation}>', embed=self.PS2_Loading_Embed)
-                #start_time = time.time()
-                setattr(self, f"{server}Data", self.PS2EmbedGen(self.PS2WorldGrab(self.servernum[server]), server))
-                await MSG.edit(content=f'<{self.donation}>',embed=getattr(self, f"{server}Data"))
-                #else:
-                #    MSG = await ctx.send(f"{ctx.message.author.mention} ``CACHED``", embed=getattr(self, f"{server}Data"))
-            except Exception as e: await ctx.send(f'{e}')
+        
+        jdata = self.JsonGrab(f"https://ps2.fisu.pw/api/population/?world=19,1,10,17,13,40,24,25")
+
+        connery = jdata['result']['1'][0]['nc']+jdata['result']['1'][0]['tr']+jdata['result']['1'][0]['vs']+jdata['result']['1'][0]['ns']
+        miller = jdata['result']['10'][0]['nc']+jdata['result']['10'][0]['tr']+jdata['result']['10'][0]['vs']+jdata['result']['10'][0]['ns']
+        emerald = jdata['result']['17'][0]['nc']+jdata['result']['17'][0]['tr']+jdata['result']['17'][0]['vs']+jdata['result']['17'][0]['ns']
+        cobalt = jdata['result']['13'][0]['nc']+jdata['result']['13'][0]['tr']+jdata['result']['13'][0]['vs']+jdata['result']['13'][0]['ns']
+        soltech = jdata['result']['40'][0]['nc']+jdata['result']['40'][0]['tr']+jdata['result']['40'][0]['vs']+jdata['result']['40'][0]['ns']
+        #apex = jdata['result']['24'][0]['nc']+jdata['result']['24'][0]['tr']+jdata['result']['24'][0]['vs']+jdata['result']['24'][0]['ns']
+        jaeger = jdata['result']['19'][0]['nc']+jdata['result']['19'][0]['tr']+jdata['result']['19'][0]['vs']+jdata['result']['19'][0]['ns']
+        #briggs = jdata['result']['25'][0]['nc']+jdata['result']['25'][0]['tr']+jdata['result']['25'][0]['vs']+jdata['result']['25'][0]['ns']
+
+        #Generating the Embed.
+        ps2embed=discord.Embed(color=0xc0c0c0)
+        ps2embed.set_thumbnail(url=f"https://cdn.discordapp.com/app-assets/309600524125339659/517514078227398677.png")
+        ps2embed.add_field(name="Servers", value=f"``Connery: {connery}``\n``Miller: {miller}``\n``Emerald: {emerald}``\n``Cobalt: {cobalt}``\n``Soltech: {soltech}``\n``Jaeger: {jaeger}``")
+        await ctx.reply(f'Work In Progress', embed=ps2embed)
 
 
     @commands.cooldown(1, 3, commands.BucketType.guild)
