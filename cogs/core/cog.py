@@ -1,9 +1,14 @@
 from discord.ext import commands
-import discord
+import zipfile
+import json
+import os
+import urllib.request
+import hashlib
 
 class cog_manager(commands.Cog):
     """Client Module Management"""
     def __init__(self, client):
+        print("Loading Lithia Module Manager")
         self.client = client
         self.lastcog = None
 
@@ -44,20 +49,6 @@ class cog_manager(commands.Cog):
                     await ctx.reply(f'`🔴{type(e).__name__}` - {e}')
             else:
                 await ctx.reply(f'`🔴{type(e).__name__}` - {e}')
-
-
-    @commands.command(hidden=True, aliases=['enable', 'Enable'])
-    @commands.is_owner()
-    async def enable_cog(self, ctx, *, cog: str = None):
-        """Enables a Disabled Cog."""
-        pass
-
-
-    @commands.command(hidden=True, aliases=['disable', 'Disable'])
-    @commands.is_owner()
-    async def disable_cog(self, ctx, *, cog: str = None):
-        """Disables a Enabled Cog."""
-        pass
 
 
 def setup(client):

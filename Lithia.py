@@ -8,7 +8,7 @@ from discord.ext import commands
 def get_prefix(client, message):
     """A callable Prefix for our client."""
     if not message.guild:
-        return '>'
+        return '<'
     return commands.when_mentioned_or(*client.prefixes)(client, message)
 
 
@@ -38,10 +38,10 @@ async def on_message(message):
 if __name__ == '__main__':
     boot_errors = []
     initial_extensions = []
-    client.prefixes = ['>', '>>']
-    for file in os.listdir(os.fsencode('./cogs')):
+    client.prefixes = ['<', '<<']
+    for file in os.listdir(os.fsencode('./cogs/core')):
         filename = os.fsdecode(file)
-        if filename.endswith(".cog") or filename.endswith(".py"): initial_extensions.append(str('cogs.'+str(filename)).replace('.py',''))
+        if filename.endswith(".cog") or filename.endswith(".py"): initial_extensions.append(str('cogs.core.'+str(filename)).replace('.py',''))
     for extension in initial_extensions:
         try: client.load_extension(extension)
         except Exception as e: boot_errors.append(f'`🔴{type(e).__name__}` - {e}')
