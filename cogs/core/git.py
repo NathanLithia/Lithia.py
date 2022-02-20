@@ -6,7 +6,7 @@ import urllib.request
 import hashlib
 
 class gitcog(commands.Cog):
-    """Client Module Management"""
+    """Lithia Module Management"""
     def __init__(self, client):
         print("Initiating Git Module Manager.")
 

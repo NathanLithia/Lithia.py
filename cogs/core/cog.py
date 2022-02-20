@@ -6,9 +6,9 @@ import urllib.request
 import hashlib
 
 class cog_manager(commands.Cog):
-    """Client Module Management"""
+    """Lithia Module Management"""
     def __init__(self, client):
-        print("Loading Lithia Module Manager")
+        print("Initiating Module Manager")
         self.client = client
         self.lastcog = None
 
