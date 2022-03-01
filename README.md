@@ -1,2 +1,2 @@
 # Lithia.py
-3rd iteration of Lithia focusing on being more modular.
+A self hosting Discord bot solution, has the ability to hotswap modules from offline and online sources deploying them in runtime.
