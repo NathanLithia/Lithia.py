@@ -1,8 +1,16 @@
 import sys
+import os
 sys.path.insert(1, './packages')
 
 import discord, asyncio, os, sys, traceback
 from discord.ext import commands
+
+TokenPath = "./auth.token"
+
+def get_token():
+    print("https://discord.com/developers")
+    
+
 
 
 def get_prefix(client, message):
@@ -45,5 +53,27 @@ if __name__ == '__main__':
     for extension in initial_extensions:
         try: client.load_extension(extension)
         except Exception as e: boot_errors.append(f'`🔴{type(e).__name__}` - {e}')
-    with open ("./auth.token", "r") as Token:
-        client.run(Token.readlines()[0])
+    else:
+        while True:
+            try:
+                with open (TokenPath, "r") as Token:
+                    os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+                    client.run(Token.readlines()[0])
+            except FileNotFoundError:
+                inputtoken = ""
+                while inputtoken == "":
+                    print("No Token was found. please generate one at https://discord.com/developers")
+                    inputtoken = input("Please Enter your Client Token: ")
+                    if inputtoken == "":
+                        print("No Token Provided")
+                    else:
+                        f = open(TokenPath, "w")
+                        f.write(inputtoken)
+                        f.close()
+            except discord.errors.LoginFailure:
+                print("Token is invalid")
+                os.remove(TokenPath)
+                sys.exit(0)
+            except Exception as e: 
+                print(f"Unexpected {e=}, {type(e)=}")
+                sys.exit(1)
