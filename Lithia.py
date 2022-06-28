@@ -37,7 +37,9 @@ async def on_ready():
 @client.event
 async def on_message(message):
     # Allow us to reply to webhooks and other bots
-    # please write a cooldown on this otherwise bad things will happen.
+    if ctx.author.id == client.user.id:
+        #dont talk to self
+        return
     ctx = await client.get_context(message)
     if ctx.valid: # Verify that the context has a command and can be used
         await client.invoke(ctx)
