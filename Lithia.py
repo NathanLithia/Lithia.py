@@ -36,13 +36,29 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    # Allow us to reply to webhooks and other bots
-    if ctx.author.id == client.user.id:
-        #dont talk to self
-        return
     ctx = await client.get_context(message)
-    if ctx.valid: # Verify that the context has a command and can be used
-        await client.invoke(ctx)
+
+    #dont talk to self
+    if ctx.author.id == client.user.id: return 
+    #blacklist test
+    if ctx.author.id == 132291947573280768 or ctx.author.id == 386291328629211147: return 
+
+    try:
+        await client.process_commands(message)
+    except commands.CommandError as error:
+        await on_command_error(ctx, error)
+        
+
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound) and ctx.author.id == client.application.owner.id:
+        await ctx.reply("**Invalid command. Try using** `help` **to figure out commands!**")
+    if isinstance(error, commands.MissingRequiredArgument) and ctx.author.id == client.application.owner.id:
+        await ctx.reply('**Please pass in all requirements.**')
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.reply("**You dont have all the requirements or permissions for using this command :angry:**")
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.reply("**Command is on cooldown, Please dont spam it.**")
 
 
 if __name__ == '__main__':
